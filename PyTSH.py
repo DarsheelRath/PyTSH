@@ -17,12 +17,15 @@ else:
 
 print("Welcome to PyTSH")
 while True:
-    
-    pytsh_command = input(f'{pytsh_prompt} ')
-    if pytsh_command == 'delete_data':
-        cli_system('cd /Users/darsheelrath/Documents/Coding  && rm  PyTSH-Shell-ConfigPrompt.json') #Change to module path file
+    try:
+        pytsh_command = input(f'{pytsh_prompt} ')
+        if pytsh_command == 'delete_data':
+            cli_system(' rm  PyTSH-Shell-ConfigPrompt.json') #Change to module path file
+            exit()
+        if pytsh_command == 'sudo su':
+            print('Sorry, we cannot directly go root.')
+        else:
+            cli_system(pytsh_command)
+    except Exception as e:
+        print(f'PyTSH: Error {e}. Terminating Session')
         exit()
-    if pytsh_command == 'sudo su':
-        print('Sorry, we cannot directly go root.')
-    else:
-        cli_system(pytsh_command)
